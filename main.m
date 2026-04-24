@@ -1,11 +1,14 @@
 % menu feito
 clear, clc, format compact,close all;
+
+n = 5;
+h = 10;
+
 % abre o ecrã do jogo
 fig = figure('Name', 'Tetris 3D','color',[0.21 0.62 0.89],'NumberTitle', 'off','WindowState', 'maximized');
 
 posicaoMenu=1;
 saida=0;
-
 %seleção do que se deseja fazer
 while saida==0
     clf;
@@ -31,7 +34,10 @@ while saida==0
     elseif strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
         close all;
         disp('nice');
-        break;
+        switch posicaoMenu
+            case 3
+                [n, h] = definicoes(n, h)
+        end
              
     end
 end
@@ -101,3 +107,10 @@ end
 
 %%
 
+switch posicaoDef
+            case 1
+                if (strcmp(tecla,'leftarrow'))% caso se ande para cima
+                        n = max(5, n-1);
+                elseif (strcmp(tecla,'downarrow'))% caso se ande para baixo
+                    n = min(10, n+1);
+                end

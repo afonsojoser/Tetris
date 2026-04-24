@@ -1,69 +1,89 @@
-clear, clc, format compact;
-
-
-% --- Configuração do Menu de Seleção ---
-fig = figure('Name', 'Setup Tetris 3D', 'NumberTitle', 'off');
-n = 10;
+function [n, h] = definicoes(n, h)
+n = 5;
 h = 10;
-fase = 1; % 1 para base, 2 para altura
-confirmado = false;
+clc, format compact;
+figm = figure('Name', 'menu','color',[0.21 0.62 0.89],'NumberTitle', 'off','WindowState', 'maximized');
+ndefs = 3;
+posicaoDef = 1;
+saida=0;
+%seleção do que se deseja fazer
+while saida==0
+    clf;
+    axis off; %retira grafico
 
-% Texto inicial no ecrã
-txt = text(0.5, 0.5, '', 'FontSize', 30, 'HorizontalAlignment', 'center');
-axis off;
+    defAtual(posicaoDef, n, h) %print das definicoes atuais
 
-% --- Ciclo de Seleção Interativo ---
-while ~confirmado && ishandle(fig)
-    if fase == 1
-        set(txt, 'String', ['Defina n (Base): ', num2str(n)]);
-    else
-        set(txt, 'String', ['Defina h (Altura): ', num2str(h)]);
+    waitforbuttonpress;% lê o que foi pressionado no teclado
+    tecla = get(figm, 'CurrentKey');
+
+    if (strcmp(tecla,'uparrow'))% caso se ande para cima
+        if posicaoDef<=1 % passa para baixo se estiver no topo
+            posicaoDef=ndefs;
+        else
+            posicaoDef=posicaoDef-1;
+        end
+
+    elseif (strcmp(tecla,'downarrow'))% caso se ande para baixo
+        if posicaoDef>=ndefs % passa para cima se estiver no fundo
+            posicaoDef=1;
+        else
+            posicaoDef=posicaoDef+1;
+        end
+    elseif strcmp(tecla,'return')
+
     end
-    
-    % Aguarda interação do utilizador
-    waitforbuttonpress;
-    tecla = get(fig, 'CurrentKey');
-    
-    % Lógica das setas e confirmação
-    if strcmp(tecla, 'rightarrow') || strcmp(tecla, 'uparrow')
-        if fase == 1
-            n = min(10,n + 1)
-        else
-            h = min(10,h + 1)
+    if (strcmp(tecla,'leftarrow'))% caso se ande para cima
+        if(posicaoDef == 1)
+            n = max(5, n-1);
+        elseif posicaoDef == 2
+            h = max(5, h-1);
         end
-    elseif strcmp(tecla, 'leftarrow') || strcmp(tecla, 'downarrow')
-        if fase == 1
-            n = max(5, n - 1)
-        else
-            h = max(5, h - 1)
+    elseif (strcmp(tecla,'rightarrow'))% caso se ande para baixo
+        if(posicaoDef == 1)
+            n = min(10, n+1);
+        elseif posicaoDef == 2
+            h = min(10, h+1);
         end
-    elseif strcmp(tecla, 'return')
-        if fase == 1
-            fase = 2;
-        else
-            confirmado = true;
-        end
+        
     end
 end
 
+    function defAtual(posicaoDef, n, h)
+        cla; % Limpa o axis para desenhar o menu atualizado sem sobrepor o anterior
 
-if ishandle(fig)
-    delete(txt); % Limpa o texto de seleção
-    clf;         % Limpa a figura
-    
-    % Define os eixos nxnxh
-    axis([0 n 0 n 0 h]);
-    grid on;
-    view(3);        % Ativa a vista 3D
-    axis equal;     % Garante que os cubos não fiquem deformados
-    
-    % Legendas e Título
-    xlabel('X');
-    ylabel('Y');
-    zlabel('Z');
-    title(['Espaço de Jogo: ', num2str(n), 'x', num2str(n), 'x', num2str(h)]);
-    
-    disp('Gráfico 3D configurado com sucesso.');
+        % Titulo (Y = 0.9)
+        text(0.5, 0.9, 'TETRIS 3D: Definições', 'FontSize', 40, 'HorizontalAlignment', 'center', 'FontWeight', 'bold', 'Color', 'b');
 
-    espaco = zeros(n,n,h);
+        switch posicaoDef
+            case 1
+                % Opção 1 Selecionada
+                text(0.5, 0.7, '> 1) Largura da base <', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'y');
+                text(0.5, 0.6, sprintf('Largura atual(n): %d', n), 'FontSize', 20, 'HorizontalAlignment', 'center', 'Color', 'w');
+
+                text(0.5, 0.5, '2) Altura', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'm');
+                text(0.5, 0.4, sprintf('Altura atual(h): %d', h), 'FontSize', 20, 'HorizontalAlignment', 'center', 'Color', 'w');
+
+                text(0.5, 0.2, '3) Sair', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'r');
+
+            case 2
+                % Opção 2 Selecionada
+                text(0.5, 0.7, '1) Largura da base', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'y');
+                text(0.5, 0.6, sprintf('Largura atual(n): %d', n), 'FontSize', 20, 'HorizontalAlignment', 'center', 'Color', 'w');
+
+                text(0.5, 0.5, '> 2) Altura <', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'm');
+                text(0.5, 0.4, sprintf('Altura atual(h): %d', h), 'FontSize', 20, 'HorizontalAlignment', 'center', 'Color', 'w');
+
+                text(0.5, 0.2, '3) Sair', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'r');
+            case 3
+                % Opção 2 Selecionada
+                text(0.5, 0.7, '1) Largura da base', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'y');
+                text(0.5, 0.6, sprintf('Largura atual(n): %d', n), 'FontSize', 20, 'HorizontalAlignment', 'center', 'Color', 'w');
+
+                text(0.5, 0.5, '2) Altura', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'm');
+                text(0.5, 0.4, sprintf('Altura atual(h): %d', h), 'FontSize', 20, 'HorizontalAlignment', 'center', 'Color', 'w');
+
+                text(0.5, 0.2, '> 3) Sair <', 'FontSize', 30, 'HorizontalAlignment', 'center', 'Color', 'r');
+        end
+    end
+
 end
