@@ -1,8 +1,5 @@
-function [n, h] = definicoes(n, h)
-n = 5;
-h = 10;
-clc, format compact;
-figm = figure('Name', 'menu','color',[0.21 0.62 0.89],'NumberTitle', 'off','WindowState', 'maximized');
+function [n, h] = definicoes(n, h,fig)
+clc;
 ndefs = 3;
 posicaoDef = 1;
 saida=0;
@@ -14,7 +11,7 @@ while saida==0
     defAtual(posicaoDef, n, h) %print das definicoes atuais
 
     waitforbuttonpress;% lê o que foi pressionado no teclado
-    tecla = get(figm, 'CurrentKey');
+    tecla = get(fig, 'CurrentKey');
 
     if (strcmp(tecla,'uparrow'))% caso se ande para cima
         if posicaoDef<=1 % passa para baixo se estiver no topo
@@ -29,8 +26,10 @@ while saida==0
         else
             posicaoDef=posicaoDef+1;
         end
-    elseif strcmp(tecla,'return')
-
+    elseif strcmp(tecla,'return') % volta ao menu principal
+        if(posicaoDef == 3)
+            return;
+        end
     end
     if (strcmp(tecla,'leftarrow'))% caso se ande para cima
         if(posicaoDef == 1)

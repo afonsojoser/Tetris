@@ -32,11 +32,11 @@ while saida==0
             posicaoMenu=posicaoMenu+1;
         end
     elseif strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
-        close all;
+        % close all;
         disp('nice');
         switch posicaoMenu
             case 3
-                [n, h] = definicoes(n, h)
+                [n, h] = definicoes(n, h,fig)
         end
              
     end
