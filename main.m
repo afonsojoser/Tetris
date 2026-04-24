@@ -32,11 +32,19 @@ while saida==0
             posicaoMenu=posicaoMenu+1;
         end
     elseif strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
-        % close all;
-        disp('nice');
+       
         switch posicaoMenu
-            case 3
-                [n, h] = definicoes(n, h,fig)
+            case 1 % caso novo jogo
+                disp('JOGOOOOOOOOOOOOOOOO');
+            case 2 % caso estatisticas
+                disp('Estatisticaaaaaaaaa');
+            case 3 % caso definições
+                [n, h] = definicoes(n, h,fig);
+            case 4 % caso saida
+                saida=saidaMesmo(fig);
+                if saida==1
+                    close all;
+                end
         end
              
     end
@@ -102,11 +110,7 @@ function menuAtual(posicaoMenu)
     end
 
 end
-
-
-
 %%
-
 switch posicaoDef
             case 1
                 if (strcmp(tecla,'leftarrow'))% caso se ande para cima
