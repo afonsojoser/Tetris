@@ -111,10 +111,3 @@ function menuAtual(posicaoMenu)
 
 end
 %%
-switch posicaoDef
-            case 1
-                if (strcmp(tecla,'leftarrow'))% caso se ande para cima
-                        n = max(5, n-1);
-                elseif (strcmp(tecla,'downarrow'))% caso se ande para baixo
-                    n = min(10, n+1);
-                end
