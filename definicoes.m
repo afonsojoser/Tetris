@@ -33,9 +33,9 @@ while saida==0
     end
     if (strcmp(tecla,'leftarrow'))% caso se ande para cima
         if(posicaoDef == 1)
-            n = max(5, n-1);
+            n = max(4, n-1);
         elseif posicaoDef == 2
-            h = max(5, h-1);
+            h = max(4, h-1);
         end
     elseif (strcmp(tecla,'rightarrow'))% caso se ande para baixo
         if(posicaoDef == 1)
