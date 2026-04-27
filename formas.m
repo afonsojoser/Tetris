@@ -1,4 +1,8 @@
-function [] = formas(x,y,z, n)
+function [] = formas(x,y,z, n, c)
+
+if nargin < 5
+        c = 1;
+end
 
 % Configurações iniciais
 hold on;
@@ -29,7 +33,9 @@ switch n
         cor = [0, 1, 0];
 end
 
-
+if c==2 
+    cor=[0.5, 0.5, 0.5];
+end
 
 for i = 1:size(posicoes, 1)
     % Desloca os vértices para a nova posição
