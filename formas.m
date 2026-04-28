@@ -6,7 +6,7 @@ end
 
 % Configurações iniciais
 hold on;
-view(3); grid on; axis equal;
+
 
 % Vértices e faces padrão de um cubo unitário
 v_base = [0 0 0; 1 0 0; 1 1 0; 0 1 0; 0 0 1; 1 0 1; 1 1 1; 0 1 1];
@@ -45,6 +45,5 @@ for i = 1:size(posicoes, 1)
     patch('Vertices', v_atual, 'Faces', f,'FaceColor', cor, 'EdgeColor', 'black', 'FaceAlpha', 0.8);
 end
 
-title('Forma 3D composta por múltiplos cubos');
 hold off;
 end
