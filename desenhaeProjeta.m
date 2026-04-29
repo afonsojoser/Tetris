@@ -1,9 +1,5 @@
 function [] = desenhaeProjeta(M, x, y, z, n)
     formas(x,y,z,n)
-    % disp(x)
-    % disp(y)
-    % disp(z)
-    disp('      ')
     
     switch n
         case 1
@@ -24,7 +20,6 @@ function [] = desenhaeProjeta(M, x, y, z, n)
         case 6
             hd = find(M(x+1, y+1, :) == 1, 1, 'last');
     end
-    disp(hd)
     
     if isempty(hd)
         hd = 0;

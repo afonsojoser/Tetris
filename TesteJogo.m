@@ -24,158 +24,59 @@ shg;
 
 % tabuleiro que indica as peças
 tabuleiroPecas=zeros(n,n,h);
+axis equal;
 axis([0,n,0,n,0,h])
-
 
 % 1º peça e desenho dela
 qualforma=randi(6);
-x=1;
-y=1;
+x=0;
+y=0;
 z=h-1;
 desenhaeProjeta(tabuleiroPecas,x,y,z,qualforma);
 
 % reset da tecla inicial
 set(fig, 'UserData', 'nada');
 
-% a colocar no interior da definiçaos dos limites
-yLimitMin=0;
-xLimitMin=0;
+% amostragem dos pontos na lateral esq do tabuleiro
+s=sprintf('Pontos:\n %d',pts);
+mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize', 20,'Color', 'white','EdgeColor', 'none');
 
 while all(tabuleiroPecas(:,:,10)~=1)
+    % atualiza numero de pontos
+    set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
+
     waitforbuttonpress;% lê o que foi pressionado no teclado
     tecla = get(fig, 'CurrentKey');
-
-    % define limites conforme a forma da peça
-    switch qualforma 
-        case 1 % bloco unitario  
-            yLimitMax=n-1;
-            xLimitMax=n-1;
-            % yLimitMin=0;
-            % xLimitMin=0;
-        case 2 %cubo 2x2x2
-            yLimitMax=n-2;
-            xLimitMax=n-2;
-        case 3 % prisma quadrangular comprimento 2 deitado
-            yLimitMax=n-2;
-            xLimitMax=n-1;
-        case 4 % prisma quadrangular comprimento 2 em pé
-            yLimitMax=n-1;
-            xLimitMax=n-1;
-        case 5 % prisma quadrangular comprimento 3 deitado
-            yLimitMax=n-3;
-            xLimitMax=n-1;
-        case 6 % prisma quadrangular comprimento 3 em pé
-            yLimitMax=n-1;
-            xLimitMax=n-1;
-    end
-
-    % andar com as setas para mover o bloco
-    if (strcmp(tecla,'uparrow'))%mov para +y
-                if y<yLimitMax
-                    y=y+1;
-                end
-    elseif (strcmp(tecla,'downarrow'))%mov para -y
-        if  yLimitMin<y
-            y=y-1;
-        end
-    elseif (strcmp(tecla,'rightarrow'))%mov para +x
-        if x<xLimitMax
-            x=x+1;
-        end 
-    elseif (strcmp(tecla,'leftarrow'))%mov para -x
-        if x>xLimitMin
-            x=x-1;
+         
+    % esc vai para pausa
+    if (strcmp(tecla,'escape' ))
+        e=pausaMenu(fig);
+        if e==1
+            break;
         end
     end
-            
-    if (strcmp(tecla,'space')) % baixa a peça      
-        
-        %  área que a peça ocupa na base
-        switch qualforma
-            case 1, xR = x; yR = y;
-            case 2, xR = x:x+1; yR = y:y+1;
-            case 3, xR = x; yR = y:y+1;
-            case 4, xR = x; yR = y;
-            case 5, xR = x; yR = y:y+2;
-            case 6, xR = x; yR = y;
-        end
-        
-        % h_base correto, peça "descer" passo a passo
-        h_base = h - 1;
-        bateu = false;
-        
-        while h_base > 0 && ~bateu
-            % Na camada abaixo, algum dos blocos debaixo da peça?
-            fatia_abaixo = tabuleiroPecas(xR+1, yR+1, h_base);
-            
-            if any(fatia_abaixo == 1, 'all') || h_base == 0
-                bateu = true; % Encontrou um obstáculo ou o chão
-            else
-                h_base = h_base - 1; % Continua a descer
-            end
-        end
-        
-        % h_base nível imediatamente abaixo da peça
-        h_colocacao = h_base + 1;
-        
-        % 3. Guardar no tabuleiro conforme a peça
-        switch qualforma
-            case 1 % Cubo 1x1x1
-                tabuleiroPecas(x+1, y+1, h_colocacao) = 1;
-                pts = pts+ nivel*1;
-            case 2 % Cubo 2x2x2
-                tabuleiroPecas(x+1:x+2, y+1:y+2, h_colocacao:h_colocacao+1) = 1;
-                pts = pts+nivel*8;
-            case 3 % Prisma 2 deitado
-                tabuleiroPecas(x+1, y+1:y+2, h_colocacao) = 1;
-                pts = pts+nivel*2;
-            case 4 % Prisma 2 em pé
-                tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+1) = 1;
-                pts = pts+nivel*2;
-            case 5 % Prisma 3 deitado
-                tabuleiroPecas(x+1, y+1:y+3, h_colocacao) = 1;
-                pts = pts+nivel*3;
-            case 6 % Prisma 3 em pé
-                tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+2) = 1;
-                pts = pts+nivel*3;
-        end
-        
+
+    % Movimento da peça (Setas)
+    [x, y] = moverPeca(x, y, qualforma, n, tecla);
+
+    % baixa a peça  
+    if (strcmp(tecla,'space'))     
+        [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts);
+
         % 4. Reset para a próxima peça
-        x = 2; % Índice seguro (evita o erro do 0)
-        y = 2; % Índice seguro (evita o erro do 0)
-        qualforma = randi(6); %TIRAR COMENT NO FINAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        x = 0;
+        y = 0;
+        qualforma = randi(6); 
         
         cla;
         desenhaeProjeta(tabuleiroPecas, x, y, (h-1), qualforma);
     end
 
-   
-    cla;% apaga o grafico e desenha o bloco a cair na posição desejada 
-    desenhaeProjeta(tabuleiroPecas,x,y,(h-1),qualforma);
-    axis([0,n,0,n,0,h]);
-    grid on;
-
     % desenho das peças já colocadas no tabuleiro
     desenhaTabuleiro(tabuleiroPecas,n ,h );
 
     % Elimina todas as camadas preenchidas
-    iz1 = find(all(all(tabuleiroPecas == 1, 1), 2));
-    iz1 = sort(iz1, 'descend');
-    
-    if ~isempty(iz1)
-        for g = 1:length(iz1)
-            for i = 1:n
-                for j = 1:n
-                    tabuleiroPecas(i, j, iz1(g):end-1) = tabuleiroPecas(i, j, iz1(g)+1:end);
-                    tabuleiroPecas(i, j, end) = 0;
-                end
-            end
-        end
-    end
-    pts = pts + length(iz1)*nivel*(n*n);
-    if length(iz1) == 3
-        pts = pts + 200;
-    end
+    [tabuleiroPecas, pts] = eliminarLinhas(tabuleiroPecas, n, nivel, pts);
 
     % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
     cla; % Apaga todos os gráficos antigos de uma vez
@@ -186,6 +87,17 @@ while all(tabuleiroPecas(:,:,10)~=1)
     
 end
 
-close all;
-disp('Game Over ma friends')
+% perdeu o jogo ou desistiu logo sai do jogo
+janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
+    'String', sprintf('GAME OVER\n\nPontos Finais: %d\n\nPrime qualquer botão para reiniciar', pts), ...
+    'BackgroundColor', [1 0 0], ... % Fundo quase preto
+    'EdgeColor', [1 1 0], ...            % Borda amarela para destaque
+    'LineWidth', 3, ...                  % Borda grossa
+    'Color', 'white', ...                % Cor do texto
+    'FontSize', 20, ...
+    'FontWeight', 'bold', ...
+    'HorizontalAlignment', 'center', ...
+    'VerticalAlignment', 'middle');
 
+waitforbuttonpress;
+close all;
