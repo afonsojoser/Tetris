@@ -18,7 +18,7 @@ switch n
         cor = [0.6, 0.2, 0.8];
     case 2 % cubo 2x2x2
         %posicoes = [x,y,z; x,y-1,z; x-1,y-1,z; x-1,y,z; x,y,z+1; x,y-1,z+1; x-1,y-1,z+1; x-1,y,z+1];
-        posicoes = [x,y,z; x,y+1,z; x+1,y,z; x+1,y+1,z; x,y,z+1; x,y+1,z+1; x+1,y,z+1; x+1,y+1,z+1]
+        posicoes = [x,y,z; x,y+1,z; x+1,y,z; x+1,y+1,z; x,y,z+1; x,y+1,z+1; x+1,y,z+1; x+1,y+1,z+1];
         cor = [1, 0.5, 0];
     case 3 % prisma quadrangular comprimento 2 deitado
         posicoes = [x,y,z; x,y+1,z];
@@ -32,6 +32,9 @@ switch n
     case 6 % prisma quadrangular comprimento 3 em pé
         posicoes = [x,y,z; x,y,z+1; x,y,z+2];
         cor = [0, 0, 1];
+    case 7
+        posicoes = [x,y,z];
+        cor = [1, 0, 0];
 end
 
 if c==2 

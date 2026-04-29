@@ -5,9 +5,12 @@ clc;clear;
 n = 5; 
 h = 10;
 fig=figure;
+nivel = 1;
 
 %----------------------------funçao----------------------------------
 
+% Pontuação
+pts = 0;
 
 % desenho tabuleiro
 xTabuleiro=0;
@@ -91,7 +94,6 @@ while all(tabuleiroPecas(:,:,10)~=1)
         switch qualforma
             case 1, xR = x; yR = y;
             case 2, xR = x:x+1; yR = y:y+1;
-            %case 2, xR = x-1:x; yR = y-1:y;
             case 3, xR = x; yR = y:y+1;
             case 4, xR = x; yR = y;
             case 5, xR = x; yR = y:y+2;
@@ -120,18 +122,22 @@ while all(tabuleiroPecas(:,:,10)~=1)
         switch qualforma
             case 1 % Cubo 1x1x1
                 tabuleiroPecas(x+1, y+1, h_colocacao) = 1;
-            % case 2 % Cubo 2x2x2
-            %     tabuleiroPecas(x:x+1, y:y+1, h_colocacao:h_colocacao+1) = 1;
+                pts = pts+ nivel*1;
             case 2 % Cubo 2x2x2
                 tabuleiroPecas(x+1:x+2, y+1:y+2, h_colocacao:h_colocacao+1) = 1;
+                pts = pts+nivel*8;
             case 3 % Prisma 2 deitado
                 tabuleiroPecas(x+1, y+1:y+2, h_colocacao) = 1;
+                pts = pts+nivel*2;
             case 4 % Prisma 2 em pé
                 tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+1) = 1;
+                pts = pts+nivel*2;
             case 5 % Prisma 3 deitado
                 tabuleiroPecas(x+1, y+1:y+3, h_colocacao) = 1;
+                pts = pts+nivel*3;
             case 6 % Prisma 3 em pé
                 tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+2) = 1;
+                pts = pts+nivel*3;
         end
         
         % 4. Reset para a próxima peça
@@ -143,7 +149,6 @@ while all(tabuleiroPecas(:,:,10)~=1)
         desenhaeProjeta(tabuleiroPecas, x, y, (h-1), qualforma);
     end
 
-
    
     cla;% apaga o grafico e desenha o bloco a cair na posição desejada 
     desenhaeProjeta(tabuleiroPecas,x,y,(h-1),qualforma);
@@ -151,21 +156,34 @@ while all(tabuleiroPecas(:,:,10)~=1)
     grid on;
 
     % desenho das peças já colocadas no tabuleiro
-    for i = 1:n
-        for j = 1:n
-            for k = 1:h
-                % Se houver uma peça nesta posição (i,j,k)
-                if tabuleiroPecas(i,j,k) == 1
-                    % Calcular as coordenadas (x,y,z) baseadas nos índices
-                    formas(i-1,j-1,k-1,1)
+    desenhaTabuleiro(tabuleiroPecas,n ,h );
+
+    % Elimina todas as camadas preenchidas
+    iz1 = find(all(all(tabuleiroPecas == 1, 1), 2));
+    iz1 = sort(iz1, 'descend');
+    
+    if ~isempty(iz1)
+        for g = 1:length(iz1)
+            for i = 1:n
+                for j = 1:n
+                    tabuleiroPecas(i, j, iz1(g):end-1) = tabuleiroPecas(i, j, iz1(g)+1:end);
+                    tabuleiroPecas(i, j, end) = 0;
                 end
             end
         end
     end
+    pts = pts + length(iz1)*nivel*(n*n);
+    if length(iz1) == 3
+        pts = pts + 200;
+    end
+
+    % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
+    cla; % Apaga todos os gráficos antigos de uma vez
+    desenhaeProjeta(tabuleiroPecas, x, y, (h-1), qualforma); % Desenha a peça atual
+    desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
+    axis([0,n,0,n,0,h]);
+    grid on;
     
-    % if(all(tabuleiroPecas(:,:,k=1:n)==1))
-        % tabuleiroPecas(:,:,k)=0;
-    % end
 end
 
 close all;
