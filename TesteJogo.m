@@ -8,6 +8,7 @@ fig=figure;
 
 %----------------------------funçao----------------------------------
 
+
 % desenho tabuleiro
 xTabuleiro=0;
 yxTabuleiro=0;
@@ -24,7 +25,7 @@ axis([0,n,0,n,0,h])
 
 
 % 1º peça e desenho dela
-qualforma=3; % qualforma=randi(6);
+qualforma=randi(6);
 x=1;
 y=1;
 z=h-1;
@@ -89,7 +90,8 @@ while all(tabuleiroPecas(:,:,10)~=1)
         %  área que a peça ocupa na base
         switch qualforma
             case 1, xR = x; yR = y;
-            case 2, xR = x-1:x; yR = y-1:y;
+            case 2, xR = x:x+1; yR = y:y+1;
+            %case 2, xR = x-1:x; yR = y-1:y;
             case 3, xR = x; yR = y:y+1;
             case 4, xR = x; yR = y;
             case 5, xR = x; yR = y:y+2;
@@ -118,8 +120,10 @@ while all(tabuleiroPecas(:,:,10)~=1)
         switch qualforma
             case 1 % Cubo 1x1x1
                 tabuleiroPecas(x+1, y+1, h_colocacao) = 1;
+            % case 2 % Cubo 2x2x2
+            %     tabuleiroPecas(x:x+1, y:y+1, h_colocacao:h_colocacao+1) = 1;
             case 2 % Cubo 2x2x2
-                tabuleiroPecas(x:x+1, y:y+1, h_colocacao:h_colocacao+1) = 1;
+                tabuleiroPecas(x+1:x+2, y+1:y+2, h_colocacao:h_colocacao+1) = 1;
             case 3 % Prisma 2 deitado
                 tabuleiroPecas(x+1, y+1:y+2, h_colocacao) = 1;
             case 4 % Prisma 2 em pé
@@ -133,11 +137,13 @@ while all(tabuleiroPecas(:,:,10)~=1)
         % 4. Reset para a próxima peça
         x = 2; % Índice seguro (evita o erro do 0)
         y = 2; % Índice seguro (evita o erro do 0)
-        % qualforma = randi(6); TIRAR COMENT NO FINAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        qualforma = randi(6); %TIRAR COMENT NO FINAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         
         cla;
         desenhaeProjeta(tabuleiroPecas, x, y, (h-1), qualforma);
     end
+
+
    
     cla;% apaga o grafico e desenha o bloco a cair na posição desejada 
     desenhaeProjeta(tabuleiroPecas,x,y,(h-1),qualforma);

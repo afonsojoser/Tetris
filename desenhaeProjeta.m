@@ -1,28 +1,34 @@
-function [] = desenhaeProjeta(M, x, y,z, n)
-
-formas(x,y,z,n)
-disp(x)
-disp(y)
-disp(z)
-disp('      ')
-switch n
-    case 1
-        h = z(find(M(x+1, y+1, :) == 1, 1, 'last'));
-    case 2
-        h = z(max(find(M(x-1:x+1, y:y+2, :) == 1, 1, 'last')));
-    case 3
-        h = z(max(find(M(x+1, y+1:y+2, :) == 1, 1, 'last')));
-    case 4
-        h = z(max(find(M(x+1, y+1, :) == 1, 1, 'last')));
-    case 5
-        h = z(max(find(M(x+1, y+1:y+3, :) == 1, 1, 'last')));
-    case 6
-        h = z(max(find(M(x+1:x+2, y+1, :) == 1, 1, 'last')));
-end
-
-if isempty(h)
-    h=0;
-end
-
-formas(x,y,h,n, 2);
+function [] = desenhaeProjeta(M, x, y, z, n)
+    formas(x,y,z,n)
+    % disp(x)
+    % disp(y)
+    % disp(z)
+    disp('      ')
+    
+    switch n
+        case 1
+            hd = find(M(x+1, y+1, :) == 1, 1, 'last');
+            
+        case 2
+            hd = find(sum(sum(M(x+1:x+2, y+1:y+2, :), 1), 2) > 0, 1, 'last');
+            
+        case 3
+            hd = find(sum(sum(M(x+1, y+1:y+2, :), 1), 2) > 0, 1, 'last');
+            
+        case 4
+            hd = find(M(x+1, y+1, :) == 1, 1, 'last');
+            
+        case 5
+            hd = find(sum(sum(M(x+1, y+1:y+3, :), 1), 2) > 0, 1, 'last');
+            
+        case 6
+            hd = find(M(x+1, y+1, :) == 1, 1, 'last');
+    end
+    disp(hd)
+    
+    if isempty(hd)
+        hd = 0;
+    end
+    
+    formas(x,y,hd,n, 2);
 end
