@@ -1,8 +1,9 @@
-function [tabuleiroPecas, pts] = eliminarLinhas(tabuleiroPecas, n, nivel, pts)
+function [tabuleiroPecas, pts,numLinhasEliminadas] = eliminarLinhas(tabuleiroPecas, n, nivel, pts)
     
 iz1 = find(all(all(tabuleiroPecas == 1, 1), 2));
     iz1 = sort(iz1, 'descend');
 
+    numLinhasEliminadas = length(iz1);
     if ~isempty(iz1)
         for g = 1:length(iz1)
             for i = 1:n

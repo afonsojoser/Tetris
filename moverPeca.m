@@ -1,29 +1,13 @@
 function [x, y] = moverPeca(x, y, qualforma, n, tecla)
+
     % limites mínimos
     yLimitMin = 0;
     xLimitMin = 0;
-
-    % define limites conforme a forma da peça
-    switch qualforma 
-        case 1 % bloco unitario  
-            yLimitMax=n-1;
-            xLimitMax=n-1;
-        case 2 %cubo 2x2x2
-            yLimitMax=n-2;
-            xLimitMax=n-2;
-        case 3 % prisma quadrangular comprimento 2 deitado
-            yLimitMax=n-2;
-            xLimitMax=n-1;
-        case 4 % prisma quadrangular comprimento 2 em pé
-            yLimitMax=n-1;
-            xLimitMax=n-1;
-        case 5 % prisma quadrangular comprimento 3 deitado
-            yLimitMax=n-3;
-            xLimitMax=n-1;
-        case 6 % prisma quadrangular comprimento 3 em pé
-            yLimitMax=n-1;
-            xLimitMax=n-1;
-    end
+    
+    xDescontos=[1 2 1 1 1 1];
+    yDescontos=[1 2 2 1 3 1];
+    yLimitMax=n-yDescontos(qualforma);
+    xLimitMax=n-xDescontos(qualforma);
     
     % andar com as setas para mover o bloco
     if (strcmp(tecla,'uparrow'))%mov para +y
