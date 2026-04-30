@@ -6,10 +6,9 @@ n = 5;
 h = 10;
 fig=figure;
 nivel = 1;
-
+nome = 'ze';
 %----------------------------funçao----------------------------------
 
-% Pontuação
 pts = 0;
 
 % desenho tabuleiro
