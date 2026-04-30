@@ -38,6 +38,7 @@ while saida==0
                 disp('JOGOOOOOOOOOOOOOOOO');
             case 2 % caso estatisticas
                 disp('Estatisticaaaaaaaaa');
+                stats();
             case 3 % caso definições
                 [n, h] = definicoes(n, h,fig);
             case 4 % caso saida

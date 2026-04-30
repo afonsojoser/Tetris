@@ -1,7 +1,15 @@
 function [] = escreveficheiros(nome, pontuacao, nivel)
 
 ficheiroUltimos = 'ultimos_10_jogadores.csv';
-ficheiroTop = 'top_10_jogadores.csv';
+switch nivel
+    case 1
+        ficheiroTop = 'top_10_jogadores_l1.csv';
+    case 2
+        ficheiroTop = 'top_10_jogadores_l2.csv';
+    case 3
+        ficheiroTop = 'top_10_jogadores_l3.csv';
+end
+
 
 novaEntrada = table(string(nome), pontuacao, nivel,'VariableNames', {'Nome', 'Pontuacao', 'Nivel'});
 
