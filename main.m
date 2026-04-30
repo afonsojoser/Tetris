@@ -36,7 +36,6 @@ while saida==0
         switch posicaoMenu
             case 1 % caso novo jogo
                 disp('JOGOOOOOOOOOOOOOOOO');
-                TesteJogo;
             case 2 % caso estatisticas
                 disp('Estatisticaaaaaaaaa');
             case 3 % caso definições
