@@ -9,6 +9,9 @@ nivel = 1;
 
 %----------------------------funçao----------------------------------
 
+% pede o nome do jogador
+nome=pedeNome(fig);
+
 % Pontuação
 pts = 0;
 
@@ -69,7 +72,7 @@ while all(tabuleiroPecas(:,:,10)~=1)
         qualforma = randi(6); 
         
         cla;
-        desenhaeProjeta(tabuleiroPecas, x, y, (h-1), qualforma);
+        desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma);
     end
 
     % desenho das peças já colocadas no tabuleiro
@@ -80,7 +83,7 @@ while all(tabuleiroPecas(:,:,10)~=1)
 
     % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
     cla; % Apaga todos os gráficos antigos de uma vez
-    desenhaeProjeta(tabuleiroPecas, x, y, (h-1), qualforma); % Desenha a peça atual
+    desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma); % Desenha a peça atual
     desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
     axis([0,n,0,n,0,h]);
     grid on;
@@ -89,7 +92,7 @@ end
 
 % perdeu o jogo ou desistiu logo sai do jogo
 janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
-    'String', sprintf('GAME OVER\n\nPontos Finais: %d\n\nPrime qualquer botão para reiniciar', pts), ...
+    'String', sprintf('GAME OVER %s\n\nPontos Finais: %d\n\nPrime qualquer botão para reiniciar',nome, pts), ...
     'BackgroundColor', [1 0 0], ... % Fundo quase preto
     'EdgeColor', [1 1 0], ...            % Borda amarela para destaque
     'LineWidth', 3, ...                  % Borda grossa
