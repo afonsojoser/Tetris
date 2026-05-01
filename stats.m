@@ -1,6 +1,6 @@
 function [] = stats(fig)
 clc;
-nstats = 3;
+nstats = 5;
 posicaoS = 1;
 saida=0;
 %seleção do que se deseja fazer
@@ -17,7 +17,7 @@ while saida==0
         if posicaoS<=1 % passa para baixo se estiver no topo
             posicaoS=nstats;
         else
-            posicaoS=posicaoDef-1;
+            posicaoS=posicaoS-1;
         end
 
     elseif (strcmp(tecla,'downarrow'))% caso se ande para baixo
@@ -27,7 +27,11 @@ while saida==0
             posicaoS=posicaoS+1;
         end
     elseif strcmp(tecla,'return') % volta ao menu principal
-        % chamar função para mostrar stats
+        if posicaoS==5
+            return;
+        else
+            leFicheiros(posicaoS, fig);
+        end
     end
 end
 
@@ -41,51 +45,50 @@ end
                 txt = text(0.5, 1,' ', 'FontSize', 30, 'HorizontalAlignment', 'center','FontWeight','bold','Color','b');%posição de escrita
                 set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 1)
-                txt = text(0.5, 0.75, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
+                txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
                 set(txt, 'String', '> 1) Top 10 Nível 1 <');
-                txt = text(0.5, 0.5, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
+                txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
                 set(txt, 'String', '2) Top 10 Nível 2');
-                txt = text(0.5, 0.25, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
                 set(txt, 'String', '3) Top 10 Nível 3');
-                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
                 set(txt, 'String', '4) Sair');
             case 2
                 %titulo
                 txt = text(0.5, 1, '', 'FontSize', 30, 'HorizontalAlignment', 'center','FontWeight','bold','Color','b');%posição de escrita
-                set(txt, 'String', 'TETRIS 3D: O JOGO');
+                set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 2)
-                txt = text(0.5, 0.75, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
+                txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
                 set(txt, 'String', '1) Top 10 Nível 1');
-                txt = text(0.5, 0.5, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
+                txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
                 set(txt, 'String', '> 2) Top 10 Nível 2 <');
-                txt = text(0.5, 0.25, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
                 set(txt, 'String', '3) Top 10 Nível 3');
-                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
                 set(txt, 'String', '4) Sair');
             case 3
                 %titulo
                 txt = text(0.5, 1, '', 'FontSize', 30, 'HorizontalAlignment', 'center','FontWeight','bold','Color','b');%posição de escrita
-                set(txt, 'String', 'TETRIS 3D: O JOGO');
+                set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 3)
-                txt = text(0.5, 0.75, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
+                txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
                 set(txt, 'String', '1) Top 10 Nível 1');
-                txt = text(0.5, 0.5, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
+                txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
                 set(txt, 'String', '2) Top 10 Nível 2');
-                txt = text(0.5, 0.25, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
                 set(txt, 'String', '> 3) Top 10 Nível 3 <');
-                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
                 set(txt, 'String', '4) Sair');
-
-            case 4
+             case 4
                 %titulo
                 txt = text(0.5, 1, '', 'FontSize', 30, 'HorizontalAlignment', 'center','FontWeight','bold','Color','b');%posição de escrita
-                set(txt, 'String', 'TETRIS 3D: O JOGO');
+                set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 4)
                 txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
                 set(txt, 'String', '1) Top 10 Nível 1');
@@ -93,7 +96,23 @@ end
                 set(txt, 'String', '2) Top 10 Nível 2');
                 txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
                 set(txt, 'String', '3) Top 10 Nível 3');
-                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
+                set(txt, 'String', '> 3) Últimos 10 Jogos <');
+                txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
+                set(txt, 'String', '4) Sair');
+
+            case 5
+                %titulo
+                txt = text(0.5, 1, '', 'FontSize', 30, 'HorizontalAlignment', 'center','FontWeight','bold','Color','b');%posição de escrita
+                set(txt, 'String', 'TETRIS 3D: Estatísticas');
+                %opções (selecionada opçao 4)
+                txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
+                set(txt, 'String', '1) Top 10 Nível 1');
+                txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
+                set(txt, 'String', '2) Top 10 Nível 2');
+                txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
+                set(txt, 'String', '3) Top 10 Nível 3');
+                txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
                 set(txt, 'String', '> 4) Sair <');

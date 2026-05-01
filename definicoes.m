@@ -8,7 +8,7 @@ while saida==0
     clf;
     axis off; %retira grafico
 
-    defAtual(posicaoDef, n, h) %print das definicoes atuais
+    defAtual(posicaoDef, n, h); %print das definicoes atuais
 
     waitforbuttonpress;% lê o que foi pressionado no teclado
     tecla = get(fig, 'CurrentKey');

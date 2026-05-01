@@ -1,9 +1,8 @@
-%% ------------------------------------------------------------------------------------------------------------------ 
-clc;clear;
+function [] = TesteJogoFacil(n, h) 
+clc;
 
 %---------------------parametros entrada--------------------------------
-n = 5; 
-h = 10;
+
 fig=figure;
 nivel = 1;
 %----------------------------funçao----------------------------------
@@ -103,3 +102,4 @@ janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
 escreveficheiros( nome, pts, nivel)
 waitforbuttonpress;
 close all;
+end
