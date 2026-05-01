@@ -24,7 +24,7 @@ while saida==0
         else
             ModoJogo=ModoJogo+1;
         end
-    elseif strcmp(tecla,'return') % opção desejada selecionada
+    elseif (strcmp(tecla,'space') || strcmp(tecla,'return')) % opção desejada selecionada
 
        tutorial(ModoJogo,fig);
         switch ModoJogo

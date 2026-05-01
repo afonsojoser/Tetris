@@ -29,7 +29,7 @@ while saida==0
         else
             posicaoMenu=posicaoMenu+1;
         end
-    elseif strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
+    elseif (strcmp(tecla,'space') || strcmp(tecla,'return')) % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
        
         switch posicaoMenu
             case 1 % caso novo jogo

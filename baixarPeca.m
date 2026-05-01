@@ -17,7 +17,7 @@ function [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, 
             % Na camada abaixo, algum dos blocos debaixo da peça?
             fatia_abaixo = tabuleiroPecas(xR+1, yR+1, h_base);
             
-            if any(fatia_abaixo == 1, 'all') || h_base == 0
+            if any(fatia_abaixo ~=0, 'all') || h_base == 0
                 bateu = true; % Encontrou um obstáculo ou o chão
             else
                 h_base = h_base - 1; % Continua a descer
@@ -33,19 +33,19 @@ function [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, 
                 tabuleiroPecas(x+1, y+1, h_colocacao) = 1;
                 pts = pts+ nivel*1;
             case 2 % Cubo 2x2x2
-                tabuleiroPecas(x+1:x+2, y+1:y+2, h_colocacao:h_colocacao+1) = 1;
+                tabuleiroPecas(x+1:x+2, y+1:y+2, h_colocacao:h_colocacao+1) = 2;
                 pts = pts+nivel*8;
             case 3 % Prisma 2 deitado
-                tabuleiroPecas(x+1, y+1:y+2, h_colocacao) = 1;
+                tabuleiroPecas(x+1, y+1:y+2, h_colocacao) = 3;
                 pts = pts+nivel*2;
             case 4 % Prisma 2 em pé
-                tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+1) = 1;
+                tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+1) = 4;
                 pts = pts+nivel*2;
             case 5 % Prisma 3 deitado
-                tabuleiroPecas(x+1, y+1:y+3, h_colocacao) = 1;
+                tabuleiroPecas(x+1, y+1:y+3, h_colocacao) = 5;
                 pts = pts+nivel*3;
             case 6 % Prisma 3 em pé
-                tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+2) = 1;
+                tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+2) = 6;
                 pts = pts+nivel*3;
         end
         

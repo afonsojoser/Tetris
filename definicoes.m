@@ -26,7 +26,7 @@ while saida==0
         else
             posicaoDef=posicaoDef+1;
         end
-    elseif strcmp(tecla,'return') % volta ao menu principal
+    elseif (strcmp(tecla,'space') || strcmp(tecla,'return')) % volta ao menu principal
         % if(posicaoDef == 3)
             return;
         % end
