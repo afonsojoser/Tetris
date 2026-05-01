@@ -1,18 +1,16 @@
-%% ------------------------------------------------------------------------------------------------------------------ 
-clc;clear;
+function [] = TesteJogoFacil(n, h) 
+clc;
 
 %---------------------parametros entrada--------------------------------
-n = 5; 
-h = 10;
+
 fig=figure;
 nivel = 1;
-
 %----------------------------funçao----------------------------------
+
 
 % pede o nome do jogador
 nome=pedeNome(fig);
 
-% Pontuação
 pts = 0;
 
 % desenho tabuleiro
@@ -101,6 +99,7 @@ janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
     'FontWeight', 'bold', ...
     'HorizontalAlignment', 'center', ...
     'VerticalAlignment', 'middle');
-
+escreveficheiros( nome, pts, nivel)
 waitforbuttonpress;
 close all;
+end

@@ -8,7 +8,7 @@ while saida==0
     clf;
     axis off; %retira grafico
 
-    defAtual(posicaoDef, n, h) %print das definicoes atuais
+    defAtual(posicaoDef, n, h); %print das definicoes atuais
 
     waitforbuttonpress;% lê o que foi pressionado no teclado
     tecla = get(fig, 'CurrentKey');
@@ -27,9 +27,9 @@ while saida==0
             posicaoDef=posicaoDef+1;
         end
     elseif strcmp(tecla,'return') % volta ao menu principal
-        if(posicaoDef == 3)
+        % if(posicaoDef == 3)
             return;
-        end
+        % end
     end
     if (strcmp(tecla,'leftarrow'))% caso se ande para cima
         if(posicaoDef == 1)
