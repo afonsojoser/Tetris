@@ -1,13 +1,13 @@
-function [] = TesteJogoFacil(n, h) 
+function [] = TesteJogoFacil(n, h,fig) 
 clc;
 
 %---------------------parametros entrada--------------------------------
-
-fig=figure;
 nivel = 1;
 %----------------------------funçao----------------------------------
 
-
+clf;%limpa ecrã
+% reset da tecla inicial
+set(fig, 'UserData', 'nada');
 % pede o nome do jogador
 nome=pedeNome(fig);
 
@@ -35,14 +35,11 @@ y=0;
 z=h-1;
 desenhaeProjeta(tabuleiroPecas,x,y,z,qualforma);
 
-% reset da tecla inicial
-set(fig, 'UserData', 'nada');
-
 % amostragem dos pontos na lateral esq do tabuleiro
 s=sprintf('Pontos:\n %d',pts);
 mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize', 20,'Color', 'white','EdgeColor', 'none');
 
-while all(tabuleiroPecas(:,:,10)~=1)
+while all(tabuleiroPecas(:,:,h)~=1)
     % atualiza numero de pontos
     set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
 
@@ -90,7 +87,7 @@ end
 
 % perdeu o jogo ou desistiu logo sai do jogo
 janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
-    'String', sprintf('GAME OVER %s\n\nPontos Finais: %d\n\nPrime qualquer botão para reiniciar',nome, pts), ...
+    'String', sprintf('GAME OVER %s\n\nPontos Finais: %d\n\nPrime qualquer botão...',nome, pts), ...
     'BackgroundColor', [1 0 0], ... % Fundo quase preto
     'EdgeColor', [1 1 0], ...            % Borda amarela para destaque
     'LineWidth', 3, ...                  % Borda grossa
@@ -101,5 +98,7 @@ janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
     'VerticalAlignment', 'middle');
 escreveficheiros( nome, pts, nivel)
 waitforbuttonpress;
-close all;
+delete(janelaPopup);
+set(fig, 'UserData', 'nada');
+return
 end

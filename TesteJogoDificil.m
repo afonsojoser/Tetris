@@ -1,14 +1,13 @@
-%% ------------------------------------------------------------------------------------------------------------------ 
-clc;clear;
+function [] = TesteJogoDificil(n, h,fig) 
+clc;
 
 %---------------------parametros entrada--------------------------------
-n = 5; 
-h = 10;
-fig=figure;
-nivel = 1;
+nivel = 3;
 
 %----------------------------funçao----------------------------------
-
+clf;%limpa ecrã
+% reset da tecla inicial
+set(fig, 'UserData', 'nada');
 % pede o nome do utilizador
 nome=pedeNome(fig);
 
@@ -50,7 +49,7 @@ mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize
 tic;
 tempoBaixa=1;
 
-while all(tabuleiroPecas(:,:,10)~=1)
+while all(tabuleiroPecas(:,:,h)~=1)
     % flag para saber se redesenha ou não
     atualizaEcra = false;     
 
@@ -148,8 +147,9 @@ janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
     'FontWeight', 'bold', ...
     'HorizontalAlignment', 'center', ...
     'VerticalAlignment', 'middle');
-
+escreveficheiros( nome, pts, nivel)
 waitforbuttonpress;
-delete (janelaPopup)
-clf;
-% close all;
+delete(janelaPopup);
+set(fig, 'UserData', 'nada');
+return
+end
