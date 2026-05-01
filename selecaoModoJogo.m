@@ -24,8 +24,9 @@ while saida==0
         else
             ModoJogo=ModoJogo+1;
         end
-    elseif strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
-       
+    elseif strcmp(tecla,'return') % opção desejada selecionada
+
+       tutorial(ModoJogo,fig);
         switch ModoJogo
             case 1 % Modo jogo facil
                 TesteJogoFacil(n, h,fig);
