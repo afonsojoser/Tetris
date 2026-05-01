@@ -14,6 +14,7 @@ nome=pedeNome(fig);
 
 % Pontuação
 pts = 0;
+pts_antigo = -1; % controlar atualizaçao pontos
 
 % desenho tabuleiro
 xTabuleiro=0;
@@ -50,31 +51,46 @@ tic;
 tempoBaixa=1;
 
 while all(tabuleiroPecas(:,:,10)~=1)
+    % flag para saber se redesenha ou não
+    atualizaEcra = false;     
+
     % atualiza numero de pontos
-    set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
-    
-    tecla = get(fig, 'UserData');%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         
-    % esc vai para pausa
-    if (strcmp(tecla,'escape' ))
-        e=pausaMenu(fig);
-        if e==1
-            break;
-        end
+    if pts ~= pts_antigo
+        set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
+        pts_antigo=pts;
     end
+    % lê tecla pressionada
+    tecla = get(fig, 'UserData');
+    set(fig, 'UserData', 'nada');
 
-    % Movimento da peça (Setas)
-    [x, y] = moverPeca(x, y, qualforma, n, tecla);
+    if ~isempty(tecla) && ~strcmp(tecla, 'nada')
+        % esc vai para pausa
+        if (strcmp(tecla,'escape' ))
+            e=pausaMenu(fig);
+            if e==1
+                break;
+            end
+        end
 
-    % baixa a peça  
-    if (strcmp(tecla,'space'))     
-        [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts);
+        % Movimento da peça (Setas)
+        x_antigo = x; y_antigo = y;
+        [x, y] = moverPeca(x, y, qualforma, n, tecla);
+        if x ~= x_antigo || y ~= y_antigo
+            atualizaEcra = true; % A peça moveu-se, desenha!
+        end
 
-        % 4. Reset para a próxima peça
-        x = 0;
-        y = 0;
-        z=h-1;
-        qualforma = randi(6); 
+        % baixa a peça  
+        if (strcmp(tecla,'space'))     
+            [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts);
+
+            % 4. Reset para a próxima peça
+            x = 0;
+            y = 0;
+            z=h-1;
+            qualforma = randi(6); 
+            atualizaEcra = true;
+            tic;
+        end
     end
     
     %---------------------------------------------Introduzido-------------------------------------------------------------
@@ -93,25 +109,32 @@ while all(tabuleiroPecas(:,:,10)~=1)
             qualforma = randi(6); 
         end
         tic;
+        atualizaEcra = true; % A gravidade atuou, desenha!
     end
     
     %_____________________________________________________________________________________________________________---
-    set(fig, 'UserData', 'nada');
+    
 
     % Elimina todas as camadas preenchidas
     [tabuleiroPecas, pts,numLinhasEliminadas] = eliminarLinhas(tabuleiroPecas, n, nivel, pts);
-    if tempoBaixa>0.5
-        tempoBaixa=tempoBaixa-numLinhasEliminadas*0.1*tempoBaixa;
+    if numLinhasEliminadas > 0
+        atualizaEcra = true; % O tabuleiro mudou, desenha!
+        if tempoBaixa>0.5
+            tempoBaixa=tempoBaixa-numLinhasEliminadas*0.1*tempoBaixa;
+        end
     end
 
     % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
-    cla; % Apaga todos os gráficos antigos de uma vez
-    desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma); % Desenha a peça atual
-    desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
-    axis([0,n,0,n,0,h]);
-    grid on;
-    drawnow limitrate
-    
+    if atualizaEcra
+        cla; % Apaga todos os gráficos antigos de uma vez
+        desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma); % Desenha a peça atual
+        desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
+        axis([0,n,0,n,0,h]);
+        grid on;
+        drawnow limitrate
+    else
+        pause(0.01);
+    end
 end
 
 % perdeu o jogo ou desistiu logo sai do jogo
