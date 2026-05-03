@@ -4,8 +4,8 @@ function [x, y] = moverPeca(x, y, qualforma, n, tecla)
     yLimitMin = 0;
     xLimitMin = 0;
     
-    xDescontos=[1 2 1 1 1 1];
-    yDescontos=[1 2 2 1 3 1];
+    xDescontos=[1 2 1 1 1 1 2 3];
+    yDescontos=[1 2 2 1 3 1 1 1];
     yLimitMax=n-yDescontos(qualforma);
     xLimitMax=n-xDescontos(qualforma);
     

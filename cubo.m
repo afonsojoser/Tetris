@@ -27,6 +27,8 @@ switch n
         cor = [0, 0, 1];
     case 7
         cor = [1, 0, 0];
+    case 8
+        cor = [1, 0, 1];
 end
 
 

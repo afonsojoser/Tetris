@@ -7,6 +7,8 @@ function [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, 
             case 4, xR = x; yR = y;
             case 5, xR = x; yR = y:y+2;
             case 6, xR = x; yR = y;
+            case 7, xR = x:x+1; yR = y;
+            case 8, xR = x:x+2; yR = y;
         end
     
         % h_base correto, peça "descer" passo a passo
@@ -35,18 +37,24 @@ function [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, 
             case 2 % Cubo 2x2x2
                 tabuleiroPecas(x+1:x+2, y+1:y+2, h_colocacao:h_colocacao+1) = 2;
                 pts = pts+nivel*8;
-            case 3 % Prisma 2 deitado
+            case 3 % Prisma 2 deitado direção y
                 tabuleiroPecas(x+1, y+1:y+2, h_colocacao) = 3;
                 pts = pts+nivel*2;
             case 4 % Prisma 2 em pé
                 tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+1) = 4;
                 pts = pts+nivel*2;
-            case 5 % Prisma 3 deitado
+            case 5 % Prisma 3 deitado direção y
                 tabuleiroPecas(x+1, y+1:y+3, h_colocacao) = 5;
                 pts = pts+nivel*3;
             case 6 % Prisma 3 em pé
                 tabuleiroPecas(x+1, y+1, h_colocacao:h_colocacao+2) = 6;
                 pts = pts+nivel*3;
+            case 7% Prisma 2 deitado direção x
+                tabuleiroPecas(x+1:x+2, y+1, h_colocacao) = 7;
+                pts = pts+nivel*2;
+            case 8 % Prisma 3 deitado direção x
+                tabuleiroPecas(x+1:x+3, y+1, h_colocacao) = 8;
+                pts = pts+nivel*3;
         end
-        
+
 end

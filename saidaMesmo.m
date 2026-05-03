@@ -24,7 +24,7 @@ function e=saidaMesmo(fig)
             else
                 posSaida=posSaida+1;
             end
-        elseif strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
+        elseif strcmp(tecla,'space') || strcmp(tecla,'return') % opção desejada selecionada FALTA COISAS !!!!!!!!!!!!!!!!!!!!!!!
             if posSaida==1
                 e=0;
             elseif posSaida==2

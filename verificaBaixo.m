@@ -7,6 +7,8 @@ function [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z, qualfo
             case 4, xR = x; yR = y;
             case 5, xR = x; yR = y:y+2;
             case 6, xR = x; yR = y;
+            case 7, xR = x:x+1; yR = y;
+            case 8, xR = x:x+2; yR = y;
         end
    
         bateu = false;

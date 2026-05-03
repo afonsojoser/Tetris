@@ -20,21 +20,24 @@ switch n
         %posicoes = [x,y,z; x,y-1,z; x-1,y-1,z; x-1,y,z; x,y,z+1; x,y-1,z+1; x-1,y-1,z+1; x-1,y,z+1];
         posicoes = [x,y,z; x,y+1,z; x+1,y,z; x+1,y+1,z; x,y,z+1; x,y+1,z+1; x+1,y,z+1; x+1,y+1,z+1];
         cor = [1, 0.5, 0];
-    case 3 % prisma quadrangular comprimento 2 deitado
+    case 3 % prisma quadrangular comprimento 2 deitado direção y 
         posicoes = [x,y,z; x,y+1,z];
         cor = [1, 1, 0];
     case 4 % prisma quadrangular comprimento 2 em pé
         posicoes = [x,y,z; x,y,z+1];
         cor =  [0, 1, 1];
-    case 5 % prisma quadrangular comprimento 3 deitado
-        posicoes = [x,y,z; x,y+1,z; x,y+2,z ];
+    case 5 % prisma quadrangular comprimento 3 deitado direção y
+        posicoes = [x,y,z; x,y+1,z; x,y+2,z ]; 
         cor = [0, 1, 0];
     case 6 % prisma quadrangular comprimento 3 em pé
         posicoes = [x,y,z; x,y,z+1; x,y,z+2];
         cor = [0, 0, 1];
-    case 7
-        posicoes = [x,y,z];
+    case 7 % prisma quadrangular comprimento 2 deitado direção z 
+        posicoes = [x,y,z; x+1,y,z];
         cor = [1, 0, 0];
+    case 8 % prisma quadrangular comprimento 3 deitado direção y
+        posicoes = [x,y,z; x+1,y,z; x+2,y,z ]; 
+        cor = [1, 0, 1];;
 end
 
 if c==2 

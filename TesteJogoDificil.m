@@ -86,7 +86,7 @@ while all(tabuleiroPecas(:,:,h)~=1)
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(6); 
+            qualforma = randi(8); 
             atualizaEcra = true;
             tic;
         end
@@ -105,7 +105,7 @@ while all(tabuleiroPecas(:,:,h)~=1)
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(6); 
+            qualforma = randi(8); 
         end
         tic;
         atualizaEcra = true; % A gravidade atuou, desenha!

@@ -28,6 +28,8 @@ function leFicheiros(n, fig)
     axes('Parent', fig, 'Position', [0 0 1 1]); 
     axis off; 
     hold on;  
+    xlim([0 1]);
+    ylim([0 1]);
     
     % screve o Título
     if n==4
@@ -49,7 +51,7 @@ function leFicheiros(n, fig)
     % Escreve os dados linha a linha
     num_linhas = height(dados);
     y_pos = 0.6; % Começa um pouco abaixo da linha desenhada
-    espacamento = 0.1; % Espaço vertical entre cada jogador
+    espacamento = 0.05; % Espaço vertical entre cada jogador
     
     for i = 1:num_linhas
         nome = string(dados{i, 1});
@@ -57,6 +59,10 @@ function leFicheiros(n, fig)
         nivel = string(dados{i, 3});
         
         % Imprimir nas posições X correspondentes ao cabeçalho
+        if n~=4
+            stri = [num2str(i), 'º'];
+            text(0.1, y_pos, stri, 'FontSize', 12);
+        end
         text(0.2, y_pos, nome, 'FontSize', 12);
         text(0.5, y_pos, pontuacao, 'FontSize', 12, 'HorizontalAlignment', 'center');
         text(0.8, y_pos, nivel, 'FontSize', 12, 'HorizontalAlignment', 'center');
@@ -66,14 +72,10 @@ function leFicheiros(n, fig)
     end
     
     % instrução para sair
-    text(0.5, 0.05, 'Pressione ENTER para voltar', 'FontSize', 10,'HorizontalAlignment', 'center', 'Color', [0.5 0.5 0.5]);
+    text(0.5, 0.05, 'Pressione qualquer tecla para voltar', 'FontSize', 10,'HorizontalAlignment', 'center', 'Color', [0.5 0.5 0.5]);
     
-    while true
-        waitforbuttonpress;
-        tecla = get(fig, 'CurrentKey');
+    while waitforbuttonpress~=1
         
-        if strcmp(tecla, 'return')
             break; % Sai do loop e termina a função
-        end
     end
 end

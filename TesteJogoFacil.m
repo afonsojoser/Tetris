@@ -64,7 +64,7 @@ while all(tabuleiroPecas(:,:,h)~=1)
         % 4. Reset para a próxima peça
         x = 0;
         y = 0;
-        qualforma = randi(6); 
+        qualforma = randi(8); 
         
         cla;
         desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma);

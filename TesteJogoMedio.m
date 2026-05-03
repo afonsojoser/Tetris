@@ -30,7 +30,7 @@ axis equal;
 axis([0,n,0,n,0,h])
 
 % 1º peça e desenho dela
-qualforma=randi(6);
+qualforma=randi(8);
 x=0;
 y=0;
 z=h-1;
@@ -88,7 +88,7 @@ while all(tabuleiroPecas(:,:,h)~=1)
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(6); 
+            qualforma = randi(8); 
             precisaNovaPeca = true;
             atualizaEcra = true;
             tic;
