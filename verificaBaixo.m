@@ -17,7 +17,7 @@ function [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z, qualfo
             % Na camada abaixo, algum dos blocos debaixo da peça?
             fatia_abaixo = tabuleiroPecas(xR+1, yR+1, z);
             
-            if any(fatia_abaixo == 1, 'all') || z == 0
+            if any(fatia_abaixo ~= 0, 'all') || z == 0
                 bateu = true; % Encontrou um obstáculo ou o chão
             end
         end

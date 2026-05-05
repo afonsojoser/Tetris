@@ -39,7 +39,7 @@ desenhaeProjeta(tabuleiroPecas,x,y,z,qualforma);
 s=sprintf('Pontos:\n %d',pts);
 mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize', 20,'Color', 'white','EdgeColor', 'none');
 
-while all(tabuleiroPecas(:,:,h)~=1)
+while all(tabuleiroPecas(:,:,h)==0)
     % atualiza numero de pontos
     set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
 

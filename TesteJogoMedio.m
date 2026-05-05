@@ -48,7 +48,7 @@ mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize
 tic;
 tempoBaixa=1;
 
-while all(tabuleiroPecas(:,:,h)~=1)
+while all(tabuleiroPecas(:,:,h)==0)
     % flag para saber se redesenha ou não
     atualizaEcra = false;     
 
