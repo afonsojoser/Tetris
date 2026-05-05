@@ -55,7 +55,7 @@ while all(tabuleiroPecas(:,:,h)==0)
     end
 
     % Movimento da peça (Setas)
-    [x, y] = moverPeca(x, y, qualforma, n, tecla);
+    [x, y] = moverPeca(x, y,z, qualforma, n, tecla, tabuleiroPecas);
 
     % baixa a peça  
     if (strcmp(tecla,'space'))     

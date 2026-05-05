@@ -75,14 +75,14 @@ while all(tabuleiroPecas(:,:,h)==0)
 
         % Movimento da peça (Setas)
         x_antigo = x; y_antigo = y;
-        [x, y] = moverPeca(x, y, qualforma, n, tecla);
+        [x, y] = moverPeca(x, y, z,qualforma, n, tecla, tabuleiroPecas);
         if x ~= x_antigo || y ~= y_antigo
             atualizaEcra = true; % A peça moveu-se, desenha!
         end
 
         % baixa a peça  
         if (strcmp(tecla,'space'))     
-            [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts);
+            [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, z, qualforma, nivel, pts);
 
             % 4. Reset para a próxima peça
             x = 0;
@@ -98,7 +98,7 @@ while all(tabuleiroPecas(:,:,h)==0)
     %---------------------------------------------Introduzido-------------------------------------------------------------
     if toc>=tempoBaixa
         z=z-1;
-        [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z, qualforma);
+        [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z+1, qualforma);
         
         if z==0 || bateu% se já esta no ponto minimo
             % fixa a peça no tabuleiro

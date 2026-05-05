@@ -3,7 +3,7 @@ clc, format compact,close all;
 
 
 % abre o ecrã do jogo
-fig = figure('Name', 'Tetris 3D','color',[0.21 0.62 0.89],'NumberTitle', 'off','WindowState', 'maximized');
+fig = figure('Name', 'Tetris 3D','color',[0.21 0.62 0.89],'NumberTitle', 'off','WindowState', 'maximized', 'ToolBar','none', 'MenuBar','none');
 
 posicaoMenu=1;
 saida=0;

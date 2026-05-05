@@ -1,4 +1,4 @@
-function [x, y] = moverPeca(x, y, qualforma, n, tecla)
+function [x, y] = moverPeca(x, y, z, qualforma, n, tecla, M)
 
     % limites mínimos
     yLimitMin = 0;
@@ -11,19 +11,19 @@ function [x, y] = moverPeca(x, y, qualforma, n, tecla)
     
     % andar com as setas para mover o bloco
     if (strcmp(tecla,'uparrow'))%mov para +y
-                if y<yLimitMax
-                    y=y+1;
-                end
+        if y<yLimitMax %|| M(x+1, y+1+yDescontos(qualforma), z)==0
+            y=y+1;
+        end
     elseif (strcmp(tecla,'downarrow'))%mov para -y
-        if  yLimitMin<y
+        if  yLimitMin<y %|| M(x+1, y+1-yDescontos(qualforma), z)==0
             y=y-1;
         end
     elseif (strcmp(tecla,'rightarrow'))%mov para +x
-        if x<xLimitMax
+        if x<xLimitMax %|| M(x+1+xDescontos(qualforma), y+1, z)==0
             x=x+1;
         end 
     elseif (strcmp(tecla,'leftarrow'))%mov para -x
-        if x>xLimitMin
+        if x>xLimitMin %|| M(x+1-xDescontos(qualforma), y+1, z)==0
             x=x-1;
         end
     end
