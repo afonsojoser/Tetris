@@ -39,7 +39,7 @@ desenhaeProjeta(tabuleiroPecas,x,y,z,qualforma);
 s=sprintf('Pontos:\n %d',pts);
 mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize', 20,'Color', 'white','EdgeColor', 'none');
 
-while all(tabuleiroPecas(:,:,h)==0)
+while true
     % atualiza numero de pontos
     set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
 
@@ -82,6 +82,9 @@ while all(tabuleiroPecas(:,:,h)==0)
     desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
     axis([0,n,0,n,0,h]);
     grid on;
+    if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
+        break;
+    end
     
 end
 

@@ -49,7 +49,7 @@ mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize
 tic;
 tempoBaixa=1;
 
-while all(tabuleiroPecas(:,:,h)==0)
+while true
     % flag para saber se redesenha ou não
     atualizaEcra = false;     
 
@@ -130,6 +130,9 @@ while all(tabuleiroPecas(:,:,h)==0)
         desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
         axis([0,n,0,n,0,h]);
         grid on;
+        if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
+            break;
+        end
         drawnow limitrate
     else
         pause(0.01);
