@@ -32,7 +32,7 @@ switch ModoJogo
         };
         
         % Desenha a caixa de texto única no centro da figura
-        text(0.5, 0.5, texto_tutorial, ...
+        text(0.5, 0.45, texto_tutorial, ...
             'FontSize', 25, 'HorizontalAlignment', 'center', 'Interpreter', 'tex');
         
         waitforbuttonpress;
