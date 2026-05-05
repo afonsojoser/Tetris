@@ -130,6 +130,7 @@ while true
         desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
         axis([0,n,0,n,0,h]);
         grid on;
+        % fim do jogo se na ultima cama tiver algo numa camada já extra
         if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
             break;
         end
