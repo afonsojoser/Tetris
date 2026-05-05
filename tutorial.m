@@ -8,8 +8,11 @@ axis off; %retira grafico
 switch ModoJogo
     case 1 % modo facil
        % Titulo
-        text(0.5, 1, 'TUTORIAL: Modo Fácil', ...
-            'FontSize', 30, 'HorizontalAlignment', 'center', ...
+        txt_titulo = text(0.5, 0.9, 'TUTORIAL: Modo Fácil', ...
+            'Units', 'normalized', ...           % Usa coordenadas relativas para a posição
+            'FontUnits', 'normalized', ...       % O tamanho da letra passa a ser relativo à janela
+            'FontSize', 0.08, ...                % O título ocupa 8% da altura do ecrã
+            'HorizontalAlignment', 'center', ...
             'FontWeight','bold', 'Color', 'b');
         
         % Texto único com formatação TeX (Cell Array)
@@ -17,23 +20,25 @@ switch ModoJogo
             '\color{red}OBJETIVO:'
             '\color{yellow}Encaixa blocos 3D para preencher fatias do tabuleiro.'
             '\color{yellow}Fatias cheias dão pontos! Se a torre bater no teto, é GAME OVER!'
-            ' ' % linha em branco
+            ' ' 
             '\color{red}Como Jogar:'
             '\color{yellow}Não há gravidade neste modo. Pensa com calma!'
             '\color{yellow}A peça flutua no topo à espera da tua jogada.'
-            ' ' % linha em branco
+            ' ' 
             '\color{red}Controlos:'
             '\color{yellow}Setas: Movem a peça no ar (eixos X e Y).'
             '\color{yellow}Espaço: Confirma a jogada e atira a peça para o fundo.'
             '\color{yellow}ESC: Abre o menu de Pausa.'
             ' '
-            ' '
             '\color{red}Pressione qualquer tecla para continuar...'
         };
         
-        % Desenha a caixa de texto única no centro da figura
-        text(0.5, 0.45, texto_tutorial, ...
-            'FontSize', 25, 'HorizontalAlignment', 'center', 'Interpreter', 'tex');
+        % Desenha a caixa de texto
+        txt_corpo = text(0.5, 0.45, texto_tutorial, ...
+            'Units', 'normalized', ...           % Usa coordenadas relativas para a posição
+            'FontUnits', 'normalized', ...       % O tamanho da letra passa a ser relativo à janela
+            'FontSize', 0.04, ...                % O corpo de texto ocupa 4% da altura do ecrã
+            'HorizontalAlignment', 'center', 'Interpreter', 'tex');
         
         waitforbuttonpress;
     case 2 % modo medio
