@@ -7,16 +7,11 @@ axis off; %retira grafico
 % apresentação tutorial dependendo do jogo
 switch ModoJogo
     case 1 % modo facil
-       % Titulo
-        txt_titulo = text(0.5, 0.9, 'TUTORIAL: Modo Fácil', ...
-            'Units', 'normalized', ...           % Usa coordenadas relativas para a posição
-            'FontUnits', 'normalized', ...       % O tamanho da letra passa a ser relativo à janela
-            'FontSize', 0.08, ...                % O título ocupa 8% da altura do ecrã
-            'HorizontalAlignment', 'center', ...
-            'FontWeight','bold', 'Color', 'b');
-        
-        % Texto único com formatação TeX (Cell Array)
+       % Juntamos o Título e o Texto no mesmo bloco para alinhamento perfeito
         texto_tutorial = {
+            '\color{blue}\bfTUTORIAL: Modo Fácil' % \bf coloca em negrito
+            ' '
+            ' '
             '\color{red}OBJETIVO:'
             '\color{yellow}Encaixa blocos 3D para preencher fatias do tabuleiro.'
             '\color{yellow}Fatias cheias dão pontos! Se a torre bater no teto, é GAME OVER!'
@@ -30,15 +25,19 @@ switch ModoJogo
             '\color{yellow}Espaço: Confirma a jogada e atira a peça para o fundo.'
             '\color{yellow}ESC: Abre o menu de Pausa.'
             ' '
+            ' '
             '\color{red}Pressione qualquer tecla para continuar...'
         };
         
-        % Desenha a caixa de texto
-        txt_corpo = text(0.5, 0.45, texto_tutorial, ...
-            'Units', 'normalized', ...           % Usa coordenadas relativas para a posição
-            'FontUnits', 'normalized', ...       % O tamanho da letra passa a ser relativo à janela
-            'FontSize', 0.04, ...                % O corpo de texto ocupa 4% da altura do ecrã
-            'HorizontalAlignment', 'center', 'Interpreter', 'tex');
+        % Cria uma caixa de texto UI em vez de usar as coordenadas do gráfico
+        % [x, y, largura, altura] -> 0.05 de margem, ocupando 90% da tela
+        annotation('textbox', [0.05, 0.05, 0.90, 0.90], ...
+            'String', texto_tutorial, ...
+            'Interpreter', 'tex', ...
+            'FontSize', 16, ... % Tamanho fixo (14 ou 16) funciona bem em qualquer PC
+            'HorizontalAlignment', 'center', ...
+            'VerticalAlignment', 'middle', ... % Centra o texto verticalmente na tela
+            'EdgeColor', 'none'); % Remove a borda da caixa para ficar invisível
         
         waitforbuttonpress;
     case 2 % modo medio
