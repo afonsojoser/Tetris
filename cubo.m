@@ -37,7 +37,7 @@ for i = 1:size(posicoes, 1)
     v_atual = v_base + posicoes(i, :);
     
     % Desenha o cubo na posição i
-    patch('Vertices', v_atual, 'Faces', f,'FaceColor', cor, 'EdgeColor', 'black', 'FaceAlpha', 0.8);
+    patch('Vertices', v_atual, 'Faces', f,'FaceColor', cor, 'EdgeColor', 'black', 'FaceAlpha', 1);
 end
 
 hold off;

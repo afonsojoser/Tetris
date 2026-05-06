@@ -83,7 +83,7 @@ while all(tabuleiroPecas(:,:,h)==0)
         end
 
         % baixa a peça  
-        if ((strcmp(tecla,'space') ||strcmp(tecla,'return') )     
+        if strcmp(tecla,'space') ||strcmp(tecla,'return') 
             [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, z, qualforma, nivel, pts);
 
             % 4. Reset para a próxima peça
