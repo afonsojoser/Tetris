@@ -45,6 +45,8 @@ while true
 
     waitforbuttonpress;% lê o que foi pressionado no teclado
     tecla = get(fig, 'CurrentKey');
+
+    moveEcra(tecla);
          
     % esc vai para pausa
     if (strcmp(tecla,'escape' ))
@@ -58,7 +60,7 @@ while true
     [x, y] = moverPeca(x, y,z, qualforma, n, tecla, tabuleiroPecas);
 
     % baixa a peça  
-    if (strcmp(tecla,'space'))     
+    if (strcmp(tecla,'space') ||strcmp(tecla,'return')   )     
         [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts);
 
         % 4. Reset para a próxima peça

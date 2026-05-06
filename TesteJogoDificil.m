@@ -62,6 +62,8 @@ while true
     tecla = get(fig, 'UserData');
     set(fig, 'UserData', 'nada');
 
+    moveEcra(tecla);
+
     if ~isempty(tecla) && ~strcmp(tecla, 'nada')
         % esc vai para pausa
         if (strcmp(tecla,'escape' ))
@@ -79,7 +81,7 @@ while true
         end
 
         % baixa a peça  
-        if (strcmp(tecla,'space'))     
+        if ((strcmp(tecla,'space') ||strcmp(tecla,'return') )     
             [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, z, qualforma, nivel, pts);
 
             % 4. Reset para a próxima peça
