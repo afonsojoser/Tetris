@@ -37,7 +37,7 @@ switch n
         cor = [1, 0, 0];
     case 8 % prisma quadrangular comprimento 3 deitado direção y
         posicoes = [x,y,z; x+1,y,z; x+2,y,z ]; 
-        cor = [1, 0, 1];;
+        cor = [1, 0, 1];
 end
 
 if c==2 

@@ -100,21 +100,21 @@ while all(tabuleiroPecas(:,:,h)==0)
     %---------------------------------------------Introduzido-------------------------------------------------------------
     if toc>=tempoBaixa
         z=z-1;
-        [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z+1, qualforma);
+        tic;
+        atualizaEcra = true; % A gravidade atuou, desenha!
+    end
+        [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z, qualforma);
         
-        if z==0 || bateu% se já esta no ponto minimo
+    if z==0 || bateu% se já esta no ponto minimo
             % fixa a peça no tabuleiro
-            [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts);
+            [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, z+1, qualforma, nivel, pts);
     
             % 4. Reset para a próxima peça
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(6);
-            precisaNovaPeca = true;
-        end
-        tic;
-        atualizaEcra = true; % A gravidade atuou, desenha!
+            qualforma = randi(8); 
+            atualizaEcra = true; % A gravidade atuou, desenha!
     end
     
     %_____________________________________________________________________________________________________________---

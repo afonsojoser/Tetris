@@ -6,7 +6,7 @@ nivel = 3;
 
 %----------------------------funçao----------------------------------
 clf;%limpa ecrã
-axJogo = axes('Parent', fig); % Cria e guarda o gráfico do jogo
+
 % reset da tecla inicial
 set(fig, 'UserData', 'nada');
 % pede o nome do utilizador
@@ -15,7 +15,7 @@ nome=pedeNome(fig);
 % Pontuação
 pts = 0;
 pts_antigo = -1; % controlar atualizaçao pontos
-
+axJogo = axes('Parent', fig); % Cria e guarda o gráfico do jogo
 % desenho tabuleiro
 xTabuleiro=0;
 yxTabuleiro=0;
@@ -107,9 +107,12 @@ while true
     %---------------------------------------------Introduzido-------------------------------------------------------------
     if toc>=tempoBaixa
         z=z-1;
+        tic;
+        atualizaEcra = true; % A gravidade atuou, desenha!
+    end
         [tabuleiroPecas, bateu] = verificaBaixo(tabuleiroPecas, x, y, z, qualforma);
         
-        if z==0 || bateu% se já esta no ponto minimo
+    if z==0 || bateu% se já esta no ponto minimo
             % fixa a peça no tabuleiro
             [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, z+1, qualforma, nivel, pts);
     
@@ -121,10 +124,7 @@ while true
             proximaForma = randi(8);
             imagens(proximaForma, fig);
             axes(axJogo);
-            
-        end
-        tic;
-        atualizaEcra = true; % A gravidade atuou, desenha!
+            atualizaEcra = true; % A gravidade atuou, desenha!
     end
     
     %_____________________________________________________________________________________________________________---
