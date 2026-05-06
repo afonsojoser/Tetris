@@ -1,6 +1,6 @@
 function []  = moveEcra(tecla)
 
-[az, elev] = view()
+[az, elev] = view();
 
 switch tecla
     case 'w'

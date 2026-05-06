@@ -6,6 +6,7 @@ nivel = 3;
 
 %----------------------------funçao----------------------------------
 clf;%limpa ecrã
+axJogo = axes('Parent', fig); % Cria e guarda o gráfico do jogo
 % reset da tecla inicial
 set(fig, 'UserData', 'nada');
 % pede o nome do utilizador
@@ -31,7 +32,9 @@ axis equal;
 axis([0,n,0,n,0,h])
 
 % 1º peça e desenho dela
-qualforma=randi(6);
+qualforma=randi(8);
+proximaForma= randi(8);
+
 x=0;
 y=0;
 z=h-1;
@@ -48,6 +51,9 @@ mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize
 % Liga o cronómetro inicial e define tempo que demoara a baixar um nivel
 tic;
 tempoBaixa=1;
+
+imagens(proximaForma, fig);
+axes(axJogo);
 
 while true
     % flag para saber se redesenha ou não
@@ -88,7 +94,11 @@ while true
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(8); 
+            qualforma = proximaForma;
+            proximaForma = randi(8);
+            imagens(proximaForma, fig);
+            axes(axJogo);
+
             atualizaEcra = true;
             tic;
         end
@@ -107,7 +117,11 @@ while true
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(8); 
+            qualforma = proximaForma;
+            proximaForma = randi(8);
+            imagens(proximaForma, fig);
+            axes(axJogo);
+            
         end
         tic;
         atualizaEcra = true; % A gravidade atuou, desenha!
