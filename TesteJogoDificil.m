@@ -44,9 +44,28 @@ desenhaeProjeta(tabuleiroPecas,x,y,z,qualforma);
 set(fig, 'UserData', 'nada');
 set(fig, 'KeyPressFcn', @(src, event) set(src, 'UserData', event.Key));%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+
 % amostragem dos pontos na lateral esq do tabuleiro
 s=sprintf('Pontos:\n %d',pts);
-mostraPontos = annotation('textbox', [0.125, 0.5, 1, 0.05],'String', s,'FontSize', 20,'Color', 'white','EdgeColor', 'none');
+mostraPontos = annotation('textbox', [0.01, 0.8, 1, 0.05],'String', s,'FontSize', 20,'Color', 'red','EdgeColor', 'none','FontWeight','bold');
+
+% mostra opções de visualização
+OpcoesView = {
+            '\color{blue}\bfModos de visualização:'
+            '\color{yellow}1-Visão 3D \color{yellow}(padrão)'
+            '\color{yellow}2-Lateral XZ'
+            '\color{yellow}3-Lateral YZ'
+            '\color{yellow}4-Topo XY'
+            '\color{yellow}WASD-Modo livre'
+            };
+% CAIXa PARA a METER TEXTO
+annotation('textbox', [0.01, 0.1, 0.2, 0.2], ...
+            'String', OpcoesView, ...
+            'Interpreter', 'tex', ...
+            'FontSize', 20, ...
+            'EdgeColor', 'k', ...
+            'BackgroundColor','r', ...
+            'FitBoxToText', 'on');
 
 % Liga o cronómetro inicial e define tempo que demoara a baixar um nivel
 tic;
