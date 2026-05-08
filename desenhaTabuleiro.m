@@ -5,7 +5,7 @@ function [] = desenhaTabuleiro(tabuleiroPecas, n, h)
                 % Se houver uma peça nesta posição (i,j,k)
                 if tabuleiroPecas(i,j,k) ~=0
                     % Calcular as coordenadas (x,y,z) baseadas nos índices
-                    cubo(i-1,j-1,k-1,tabuleiroPecas(i,j,k))
+                    cubo(i-1,j-1,k-1,tabuleiroPecas(i,j,k));
                 end
             end
         end
