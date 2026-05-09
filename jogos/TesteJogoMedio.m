@@ -13,6 +13,8 @@ nome=pedeNome(fig);
 % Pontuação
 pts = 0;
 pts_antigo = -1; % controlar atualizaçao pontos
+axJogo = axes('Parent', fig); % Cria e guarda o gráfico do jogo
+
 
 % desenho tabuleiro
 xTabuleiro=0;
@@ -31,6 +33,8 @@ axis([0,n,0,n,0,h])
 
 % 1º peça e desenho dela
 qualforma=randi(8);
+proximaForma= randi(8);
+
 x=0;
 y=0;
 z=h-1;
@@ -66,6 +70,9 @@ annotation('textbox', [0.01, 0.1, 0.2, 0.2], ...
 % Liga o cronómetro inicial e define tempo que demoara a baixar um nivel
 tic;
 tempoBaixa=1;
+
+imagens(proximaForma, fig);
+axes(axJogo);
 
 while all(tabuleiroPecas(:,:,h)==0)
     % flag para saber se redesenha ou não
@@ -109,7 +116,10 @@ while all(tabuleiroPecas(:,:,h)==0)
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(8); 
+            qualforma = proximaForma;
+            proximaForma = randi(8);
+            imagens(proximaForma, fig);
+            axes(axJogo);
             precisaNovaPeca = true;
             atualizaEcra = true;
             tic;
@@ -132,7 +142,10 @@ while all(tabuleiroPecas(:,:,h)==0)
             x = 0;
             y = 0;
             z=h-1;
-            qualforma = randi(8); 
+            qualforma = proximaForma;
+            proximaForma = randi(8);
+            imagens(proximaForma, fig);
+            axes(axJogo);
             atualizaEcra = true; % A gravidade atuou, desenha!
     end
     

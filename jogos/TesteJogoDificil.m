@@ -67,6 +67,8 @@ annotation('textbox', [0.01, 0.1, 0.2, 0.2], ...
             'BackgroundColor','r', ...
             'FitBoxToText', 'on');
 
+
+
 % Liga o cronómetro inicial e define tempo que demoara a baixar um nivel
 tic;
 tempoBaixa=1;

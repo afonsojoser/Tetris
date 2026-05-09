@@ -17,6 +17,7 @@ function [] = imagens(n, fig)
         case 8
             [img, ~, alpha] = imread("3deitadox.png");
     end
+    text(0.75, 0.75, 'Próxima Peça', 'FontSize', 15, 'HorizontalAlignment', 'center', 'Color', 'y');
 
     % Procura e apaga eixo antigo
     ax_antigo = findobj(fig, 'Tag', 'eixo_preview');
@@ -25,7 +26,7 @@ function [] = imagens(n, fig)
     end
 
     % Cria o eixo novo
-    ax = axes('Parent', fig, 'Position', [0.75, 0.75, 0.2, 0.2], 'Tag', 'eixo_preview','Visible', 'off');
+    ax = axes('Parent', fig, 'Position', [0.75, 0.70, 0.2, 0.2], 'Tag', 'eixo_preview','Visible', 'off');
 
     % Mostra a imagem sem deixar o imshow mexer no eixo
     hImg = image(img, 'Parent', ax);
