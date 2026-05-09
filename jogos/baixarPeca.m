@@ -1,4 +1,6 @@
 function [tabuleiroPecas, pts] = baixarPeca(tabuleiroPecas, x, y, h, qualforma, nivel, pts)
+[xf, fs] = audioread("colocar2.mp3");
+soundsc(xf, fs);
     %  área que a peça ocupa na base
         switch qualforma
             case 1, xR = x; yR = y;
