@@ -12,6 +12,8 @@ set(fig, 'UserData', 'nada');
 nome=pedeNome(fig);
 
 pts = 0;
+axJogo = axes('Parent', fig); % Cria e guarda o gráfico do jogo
+
 
 % desenho tabuleiro
 xTabuleiro=0;
@@ -29,7 +31,8 @@ axis equal;
 axis([0,n,0,n,0,h])
 
 % 1º peça e desenho dela
-qualforma=randi(6);
+qualforma=randi(8);
+proximaForma= randi(8);
 x=0;
 y=0;
 z=h-1;
@@ -56,6 +59,8 @@ annotation('textbox', [0.01, 0.1, 0.2, 0.2], ...
             'EdgeColor', 'k', ...
             'BackgroundColor','r', ...
             'FitBoxToText', 'on');
+imagens(proximaForma, fig);
+axes(axJogo);
 while true
     % atualiza numero de pontos
     set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
@@ -83,7 +88,10 @@ while true
         % 4. Reset para a próxima peça
         x = 0;
         y = 0;
-        qualforma = randi(8); 
+        qualforma = proximaForma;
+        proximaForma = randi(8);
+        imagens(proximaForma, fig);
+        axes(axJogo);
         
         cla;
         desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma);
