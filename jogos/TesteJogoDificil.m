@@ -152,7 +152,7 @@ while true
     
 
     % Elimina todas as camadas preenchidas
-    [tabuleiroPecas, pts,numLinhasEliminadas] = eliminarLinhas(tabuleiroPecas, n, nivel, pts);
+    [tabuleiroPecas, pts,numLinhasEliminadas] = eliminarLinhas(tabuleiroPecas, n, nivel, pts, h);
     if numLinhasEliminadas > 0
         atualizaEcra = true; % O tabuleiro mudou, desenha!
         if tempoBaixa>0.5

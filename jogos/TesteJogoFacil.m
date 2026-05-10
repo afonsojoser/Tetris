@@ -102,7 +102,7 @@ while true
     desenhaTabuleiro(tabuleiroPecas,n ,h );
 
     % Elimina todas as camadas preenchidas
-    [tabuleiroPecas, pts] = eliminarLinhas(tabuleiroPecas, n, nivel, pts);
+    [tabuleiroPecas, pts] = eliminarLinhas(tabuleiroPecas, n, nivel, pts, h);
 
     % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
     cla; % Apaga todos os gráficos antigos de uma vez
