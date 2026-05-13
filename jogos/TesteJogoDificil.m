@@ -163,19 +163,30 @@ while true
     % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
     if atualizaEcra
         cla; % Apaga todos os gráficos antigos de uma vez
-        desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma); % Desenha a peça atual
         desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
-        axis([0,n,0,n,0,h]);
-        grid on;
+
         % fim do jogo se na ultima cama tiver algo numa camada já extra
         if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
             break;
         end
+
+
+        desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma); % Desenha a peça atual
+
+        axis([0,n,0,n,0,h]);
+        grid on;
+        
         drawnow limitrate
     else
         pause(0.01);
     end
 end
+
+% som derrota
+[xf, fs] = audioread("derrota.mp3");
+soundsc(xf, fs);
+pause(2.7); % o pause é de proposito para nao crashar 
+
 
 % perdeu o jogo ou desistiu logo sai do jogo
 janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...

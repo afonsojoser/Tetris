@@ -65,7 +65,7 @@ axes(axJogo);
 while true
     % atualiza numero de pontos
     set(mostraPontos, 'String', ['Pontos: ', num2str(pts)]);
-    
+
     waitforbuttonpress;% lê o que foi pressionado no teclado
     tecla = get(fig, 'CurrentKey');
 
@@ -94,8 +94,13 @@ while true
         imagens(proximaForma, fig);
         axes(axJogo);
         
-        cla;
-        desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma);
+        % cla;
+        % desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma);
+    end
+
+    % fim do jogo se na ultima cama tiver algo numa camada já extra
+    if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
+        break;
     end
 
     % desenho das peças já colocadas no tabuleiro
@@ -104,18 +109,21 @@ while true
     % Elimina todas as camadas preenchidas
     [tabuleiroPecas, pts] = eliminarLinhas(tabuleiroPecas, n, nivel, pts, h);
 
+    
     % --- 2. DESENHO (Apenas UMA vez no final do ciclo!) ---
     cla; % Apaga todos os gráficos antigos de uma vez
     desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma); % Desenha a peça atual
     desenhaTabuleiro(tabuleiroPecas, n, h); % Desenha as peças no fundo
     axis([0,n,0,n,0,h]);
     grid on;
-    % fim do jogo se na ultima cama tiver algo numa camada já extra
-    if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
-        break;
-    end
+    
     
 end
+
+% som derrota
+[xf, fs] = audioread("derrota.mp3");
+soundsc(xf, fs);
+pause(2.7); % o pause é de proposito para nao crashar 
 
 % perdeu o jogo ou desistiu logo sai do jogo
 janelaPopup = annotation('textbox', [0.3, 0.3, 0.4, 0.4], ...
