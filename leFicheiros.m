@@ -1,17 +1,16 @@
 function leFicheiros(n, fig)
     clc;
     
-    pasta = 'C:\Users\Utilizador\Documents\Afonso\0 Universidade\2ºAno\2ºSemestre\MCEE\Projeto\Tetris\ficheiros';
     % escolhe o ficheiro
     switch n
         case 1
-            fich = fullfile(pasta, 'top_10_jogadores_l1.csv');
+            fich = 'top_10_jogadores_l1.csv';
         case 2
-            fich = fullfile(pasta, 'top_10_jogadores_l2.csv');
+            fich = 'top_10_jogadores_l2.csv';
         case 3
-            fich = fullfile(pasta, 'top_10_jogadores_l3.csv');
+            fich = 'top_10_jogadores_l3.csv';
         case 4
-            fich = fullfile(pasta, 'ultimos_10_jogadores.csv');
+            fich = 'ultimos_10_jogadores.csv';
         otherwise
             disp('Opção inválida');
             return;

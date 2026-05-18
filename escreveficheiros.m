@@ -1,18 +1,14 @@
 function [] = escreveficheiros(nome, pontuacao, nivel)
 
-pasta = 'C:\Users\Utilizador\Documents\Afonso\0 Universidade\2ºAno\2ºSemestre\MCEE\Projeto\Tetris\ficheiros';
-    
-    % 2. Cria os caminhos completos usando o fullfile
-    ficheiroUltimos = fullfile(pasta, 'ultimos_10_jogadores.csv');
-    
-    switch nivel
-        case 1
-            ficheiroTop = fullfile(pasta, 'top_10_jogadores_l1.csv');
-        case 2
-            ficheiroTop = fullfile(pasta, 'top_10_jogadores_l2.csv');
-        case 3
-            ficheiroTop = fullfile(pasta, 'top_10_jogadores_l3.csv');
-    end
+ficheiroUltimos = 'ultimos_10_jogadores.csv';
+switch nivel
+    case 1
+        ficheiroTop = 'top_10_jogadores_l1.csv';
+    case 2
+        ficheiroTop = 'top_10_jogadores_l2.csv';
+    case 3
+        ficheiroTop = 'top_10_jogadores_l3.csv';
+end
 
 
 novaEntrada = table(string(nome), pontuacao, nivel,'VariableNames', {'Nome', 'Pontuacao', 'Nivel'});
