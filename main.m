@@ -5,4 +5,4 @@ h = 10;
 %adiciona as pastas
 
 % abre o ecrã do jogo
-menu(n, h)
+menu(n, h);
