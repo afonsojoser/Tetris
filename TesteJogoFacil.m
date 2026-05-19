@@ -98,13 +98,15 @@ while true
         % desenhaeProjeta(tabuleiroPecas, x, y, z, qualforma);
     end
 
+    
+
+    % desenho das peças já colocadas no tabuleiro
+    desenhaTabuleiro(tabuleiroPecas,n ,h );
+
     % fim do jogo se na ultima cama tiver algo numa camada já extra
     if size(tabuleiroPecas, 3) > h || any(tabuleiroPecas(:,:,h)~=0, 'all')
         break;
     end
-
-    % desenho das peças já colocadas no tabuleiro
-    desenhaTabuleiro(tabuleiroPecas,n ,h );
 
     % Elimina todas as camadas preenchidas
     [tabuleiroPecas, pts] = eliminarLinhas(tabuleiroPecas, n, nivel, pts, h);
