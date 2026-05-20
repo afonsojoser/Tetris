@@ -155,7 +155,7 @@ while true
     [tabuleiroPecas, pts,numLinhasEliminadas] = eliminarLinhas(tabuleiroPecas, n, nivel, pts, h);
     if numLinhasEliminadas > 0
         atualizaEcra = true; % O tabuleiro mudou, desenha!
-        if tempoBaixa>0.5
+        if tempoBaixa>0.2
             tempoBaixa=tempoBaixa-numLinhasEliminadas*0.1*tempoBaixa;
         end
     end

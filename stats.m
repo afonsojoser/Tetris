@@ -46,11 +46,11 @@ end
                 set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 1)
                 txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
-                set(txt, 'String', '> 1) Top 10 Nível 1 <');
+                set(txt, 'String', '> 1) Top 10 Nível Fácil <');
                 txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
-                set(txt, 'String', '2) Top 10 Nível 2');
+                set(txt, 'String', '2) Top 10 Nível Médio');
                 txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
-                set(txt, 'String', '3) Top 10 Nível 3');
+                set(txt, 'String', '3) Top 10 Nível Difícil');
                 txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
@@ -61,11 +61,11 @@ end
                 set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 2)
                 txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
-                set(txt, 'String', '1) Top 10 Nível 1');
+                set(txt, 'String', '1) Top 10 Nível Fácil');
                 txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
-                set(txt, 'String', '> 2) Top 10 Nível 2 <');
+                set(txt, 'String', '> 2) Top 10 Nível Médio <');
                 txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
-                set(txt, 'String', '3) Top 10 Nível 3');
+                set(txt, 'String', '3) Top 10 Nível Difícil');
                 txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
@@ -76,11 +76,11 @@ end
                 set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 3)
                 txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
-                set(txt, 'String', '1) Top 10 Nível 1');
+                set(txt, 'String', '1) Top 10 Nível Fácil');
                 txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
-                set(txt, 'String', '2) Top 10 Nível 2');
+                set(txt, 'String', '2) Top 10 Nível Médio');
                 txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
-                set(txt, 'String', '> 3) Top 10 Nível 3 <');
+                set(txt, 'String', '> 3) Top 10 Nível Difícil <');
                 txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
@@ -91,11 +91,11 @@ end
                 set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 4)
                 txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
-                set(txt, 'String', '1) Top 10 Nível 1');
+                set(txt, 'String', '1) Top 10 Nível Fácil');
                 txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
-                set(txt, 'String', '2) Top 10 Nível 2');
+                set(txt, 'String', '2) Top 10 Nível Médio');
                 txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
-                set(txt, 'String', '3) Top 10 Nível 3');
+                set(txt, 'String', '3) Top 10 Nível Difícil');
                 txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '> 3) Últimos 10 Jogos <');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
@@ -107,11 +107,11 @@ end
                 set(txt, 'String', 'TETRIS 3D: Estatísticas');
                 %opções (selecionada opçao 4)
                 txt = text(0.5, 0.8, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','y');%posição de escrita
-                set(txt, 'String', '1) Top 10 Nível 1');
+                set(txt, 'String', '1) Top 10 Nível Fácil');
                 txt = text(0.5, 0.6, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','m');%posição de escrita
-                set(txt, 'String', '2) Top 10 Nível 2');
+                set(txt, 'String', '2) Top 10 Nível Médio');
                 txt = text(0.5, 0.4, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','g');%posição de escrita
-                set(txt, 'String', '3) Top 10 Nível 3');
+                set(txt, 'String', '3) Top 10 Nível Difícil');
                 txt = text(0.5, 0.2, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','w');%posição de escrita
                 set(txt, 'String', '3) Últimos 10 Jogos');
                 txt = text(0.5, 0, '', 'FontSize', 30, 'HorizontalAlignment', 'center','Color','r');%posição de escrita
